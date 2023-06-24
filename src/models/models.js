@@ -32,7 +32,7 @@ export const Medicos = sequelize.define("Medicos",{
     email: {
         type: DataTypes.STRING,
     },
-    teléfono:{
+    telefono:{
         type: DataTypes.STRING,
     },
     fecha_nacimiento:{
@@ -48,4 +48,30 @@ export const Medicos = sequelize.define("Medicos",{
     password: {
         type: DataTypes.STRING,
     }, 
+})
+
+export const Pacientes = sequelize.define("Pacientes",{
+    id:{
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    nombre:{
+        type: DataTypes.STRING,
+    },
+    apellido: {
+        type: DataTypes.STRING,
+    },
+    cedula:{
+        type: DataTypes.STRING,
+    },
+    email: {
+        type: DataTypes.STRING,
+    },
+    telefono:{
+        type: DataTypes.STRING,
+    },
+    fecha_nacimiento:{
+        type: DataTypes.DATE,
+    },
 })
