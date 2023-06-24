@@ -1,6 +1,8 @@
 import express from 'express';
 import { sequelize } from './src/models/models.js';
 import routerMedicos  from './src/routes/routerMedicos.js';
+import { login } from './src/controllers/loginController.js';
+import authenticateToken from './src/middlewares/loginMiddleware.js'
 
 
 
@@ -15,7 +17,9 @@ app.get('/', (req,res)=>{
     res.send('Hola');
 })
 
-app.use('/Medicos', routerMedicos);
+app.post('/Login',login);
+
+app.use('/Medicos', authenticateToken ,routerMedicos);
 
 
 app.listen(port, ()=> {

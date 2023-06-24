@@ -1,4 +1,5 @@
 import { Medicos } from "../models/models.js";
+import bcrypt from "bcrypt";
 
 // Obtener todos los médicos
 export const getMedicos = async (req, res) => {
@@ -28,6 +29,8 @@ export const getMedicoById = async (req, res) => {
 // Crear un nuevo médico
 export const postMedico = async (req, res) => {
     const { nombre, apellido, cedula, email, telefono, fecha_nacimiento, especialidad, username, password } = req.body;
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
     try {
         const medico = await Medicos.create({
             nombre,
@@ -38,7 +41,7 @@ export const postMedico = async (req, res) => {
             fecha_nacimiento,
             especialidad,
             username,
-            password
+            password:hashedPassword
         });
         res.json(medico);
     } catch (error) {
@@ -51,6 +54,8 @@ export const postMedico = async (req, res) => {
 export const putMedico = async (req, res) => {
     const { id } = req.params;
     const { nombre, apellido, cedula, email, telefono, fecha_nacimiento, especialidad, username, password } = req.body;
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
     try {
         const medico = await Medicos.findByPk(id);
         if (medico) {
@@ -63,7 +68,7 @@ export const putMedico = async (req, res) => {
                 fecha_nacimiento,
                 especialidad,
                 username,
-                password
+                password:hashedPassword
             });
             res.json(medico);
         } else {
