@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestión de Fichas Clínicas</title>
+</head>
+<body>
+  <h1>Gestión de Fichas Clínicas</h1>
+  
+  <form id="fichaForm">
+    <label for="fechaInput">Fecha:</label>
+    <input type="date" id="fechaInput" name="fecha" required><br>
+    
+    <label for="pacienteInput">Paciente:</label>
+    <input type="text" id="pacienteInput" name="paciente" required><br>
+    
+    <label for="motivoInput">Motivo de Consulta:</label>
+    <input type="text" id="motivoInput" name="motivo" required><br>
+    
+    <label for="diagnosticoInput">Diagnóstico:</label>
+    <input type="text" id="diagnosticoInput" name="diagnostico" required><br>
+    
+    <label for="tratamientoInput">Tratamiento:</label>
+    <input type="text" id="tratamientoInput" name="tratamiento" required><br>
+    
+    <button type="submit">Crear Ficha Clínica</button>
+  </form>
+  
+  <script src="main.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@ import { login } from './src/controllers/loginController.js';
 import authenticateToken from './src/middlewares/loginMiddleware.js'
 import cors from 'cors';
 import routerPacientes from './src/routes/routerPacientes.js';
+import routerFichas from './src/routes/routerFicha.js';
 
 const app = express();
 await sequelize.sync();
@@ -28,6 +29,8 @@ app.post('/Login', login);
 app.use('/Medicos', authenticateToken, routerMedicos);
 
 app.use('/Pacientes', authenticateToken, routerPacientes);
+
+app.use('/Fichas', authenticateToken, routerFichas);
 
 
 app.listen(port, () => {
