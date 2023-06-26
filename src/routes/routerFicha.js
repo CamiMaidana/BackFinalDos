@@ -1,8 +1,11 @@
 import  express from "express";
-import { crearFicha } from '../controllers/fichasControllers.js'
+import { crearFicha, getFichas } from '../controllers/fichasControllers.js'
 
 const routerFichas = express.Router();
 
 routerFichas.post('/crear', crearFicha);
 
+routerFichas.get('/get', getFichas);
+
 export default routerFichas;
+

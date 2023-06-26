@@ -1,5 +1,6 @@
 import { Detalles, Fichas } from "../models/models.js";
 
+
 export const crearFicha = async (req, res) => {
     try {
         // Obtener los datos enviados en el cuerpo de la solicitud
@@ -32,5 +33,15 @@ export const crearFicha = async (req, res) => {
         // Enviar una respuesta de error en caso de fallo
         console.error(error);
         res.status(500).json({ error: 'Error al crear la ficha clínica' });
+    }
+};
+
+export const getFichas = async (req, res) => {
+    try {
+        const fichas = await Fichas.findAll();
+        res.json(fichas);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Ha ocurrido un error al obtener los fichas.' });
     }
 };

@@ -18,7 +18,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
       // Guardar el token en el almacenamiento local (localStorage)
       localStorage.setItem("token", token);
       // Redireccionar a la página principal o realizar otras acciones necesarias
-      window.location.href = "http://127.0.0.1:5500/Frontend/index.html";
+      //window.location.href = "http://127.0.0.1:5500/Frontend/index.html";
+      window.location.replace("http://127.0.0.1:5500/Frontend/index.html");
     } else {
       alert("Error de inicio de sesión. Por favor, verifique sus credenciales.");
     }
