@@ -124,3 +124,7 @@ export const Detalles = sequelize.define("Detalles", {
         type: DataTypes.STRING,
     }
 })
+
+Fichas.belongsTo(Pacientes, { foreignKey: 'idpaciente' });
+Fichas.belongsTo(Medicos, { foreignKey: 'idmedico' });
+Fichas.hasMany(Detalles, { foreignKey: 'idfichas' });

@@ -1,4 +1,4 @@
-import { Detalles, Fichas } from "../models/models.js";
+import { Detalles, Fichas, Medicos, Pacientes } from "../models/models.js";
 
 
 export const crearFicha = async (req, res) => {
@@ -38,7 +38,21 @@ export const crearFicha = async (req, res) => {
 
 export const getFichas = async (req, res) => {
     try {
-        const fichas = await Fichas.findAll();
+        const fichas = await Fichas.findAll({
+            include:[
+                {
+                    model: Medicos,
+                    attributes: ['nombre', 'apellido', 'especialidad'], 
+                },
+                {
+                    model: Pacientes,
+                    attributes: ['nombre', 'apellido'], 
+                },
+                {
+                    model: Detalles,
+                }
+            ]
+        });
         res.json(fichas);
     } catch (error) {
         console.error(error);
