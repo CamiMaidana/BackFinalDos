@@ -1,4 +1,8 @@
 {
-    "dialect": "sqlite",
-    "storage": "./db.sqlite3"
+    "dialect": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "database": "bdpwb",
+    "username": "root",
+    "password": "root"
 }
