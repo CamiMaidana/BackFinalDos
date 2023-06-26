@@ -15,16 +15,17 @@
         <label for="pacienteInput">Paciente:</label>
         <input type="text" id="pacienteInput" name="paciente" required><br>
 
-        <label for="motivoInput">Motivo de Consulta:</label>
-        <input type="text" id="motivoInput" name="motivo" required><br>
+        <label for="cantidadDetalles">Cantidad de detalles:</label>
+        <select id="cantidadDetalles" name="cantidadDetalles">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <!-- Agrega las opciones restantes hasta el 10 -->
+        </select>
 
-        <label for="diagnosticoInput">Diagnóstico:</label>
-        <input type="text" id="diagnosticoInput" name="diagnostico" required><br>
+        <div id="detallesContainer"></div>
 
-        <label for="tratamientoInput">Tratamiento:</label>
-        <input type="text" id="tratamientoInput" name="tratamiento" required><br>
-
-        <input type="submit" value="Crear ficha clinica">
+        <input type="submit" value="Crear ficha clínica">
     </form>
 
     <script src="gestion.js"></script>

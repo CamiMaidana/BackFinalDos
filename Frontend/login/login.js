@@ -14,9 +14,11 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   
     if (response.ok) {
       const data = await response.json();
-      const token = data.token;
+      const {token, id, nombre} = data;
       // Guardar el token en el almacenamiento local (localStorage)
       localStorage.setItem("token", token);
+      localStorage.setItem("id", id);
+      localStorage.setItem("nombre", nombre);
       // Redireccionar a la página principal o realizar otras acciones necesarias
       //window.location.href = "http://127.0.0.1:5500/Frontend/index.html";
       window.location.replace("http://127.0.0.1:5500/Frontend/index.html");
