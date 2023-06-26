@@ -1,23 +1,30 @@
 import { Medicos } from "../models/models.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 export const login = async (req, res) => {
-    try {
-        const { username, password } = req.body;
-        // Find the user by username
-        const user = await Medicos.findOne({ where: { username } });
-        // If user not found or password doesn't match, return an error
-        if (!user || !(await bcrypt.compare(password, user.password))) {
-            return res.status(401).json({ error: 'Invalid username or password' });
-        }
+  try {
+    const { username, password } = req.body;
 
-        // Generate a JWT token
-        const token = jwt.sign({ userId: user.id }, 'your_secret_key', { expiresIn: '24h' });
+    console.log('Intento de inicio de sesión:', username);
 
-        res.json({ token, id: user.id, nombre: user.nombre });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error de login.' });
+    // Buscar el usuario por su nombre de usuario
+    const user = await Medicos.findOne({ where: { username } });
+
+    // Si el usuario no se encuentra o la contraseña no coincide, devolver un error
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      console.log('Credenciales inválidas para el usuario:', username);
+      return res.status(401).json({ error: 'Invalid username or password' });
     }
+
+    console.log('Inicio de sesión exitoso para el usuario:', username);
+
+    // Generar un token JWT
+    const token = jwt.sign({ userId: user.id }, 'your_secret_key', { expiresIn: '24h' });
+
+    res.json({ token, id: user.id, nombre: user.nombre });
+  } catch (error) {
+    console.error('Error en el proceso de inicio de sesión:', error);
+    res.status(500).json({ error: 'Error de login.' });
+  }
 };

@@ -4,16 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #fff;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ff69b4;
+        }
+        
+        #loginForm {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        label {
+            color: #ff69b4;
+        }
+        
+        button[type="submit"] {
+            background-color: #ff69b4;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>LOGIN</h1>
     <form id="loginForm">
-        <label for="username">Usuario: </label>
-        <input type="text" id="username" required>
-        <label for="password">Password: </label>
-        <input type="password" id="password" required>
-        <button type="submit">Iniciar</button>
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuario:</label>
+            <input type="text" id="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Iniciar</button>
     </form>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="login.js"></script>
 </body>
 </html>

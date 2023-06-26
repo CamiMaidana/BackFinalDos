@@ -3,21 +3,70 @@
 
 <head>
     <title>Gestión de Fichas Clínicas</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #fff;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ff69b4;
+        }
+        
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        label {
+            color: #ff69b4;
+        }
+        
+        input[type="date"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 6px 12px;
+            margin-top: 6px;
+            margin-bottom: 12px;
+            border: 1px solid #ff69b4;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"] {
+            background-color: #ff69b4;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+        }
+        
+        #detallesContainer {
+            margin-bottom: 12px;
+        }
+    </style>
 </head>
 
 <body>
-    <a href="/Frontend/index.html">Menu</a>
+    <a href="/Frontend/index.html" class="btn btn-primary">Menu</a>
     <h1>Gestión de Fichas Clínicas</h1>
 
     <form id="fichaForm">
         <label for="fechaInput">Fecha:</label>
-        <input type="date" id="fechaInput" name="fecha" required><br>
+        <input type="date" id="fechaInput" name="fecha" required>
 
         <label for="pacienteInput">Paciente:</label>
-        <input type="text" id="pacienteInput" name="paciente" required><br>
+        <div class="input-group">
+            <input type="text" id="pacienteInput" name="paciente" required>
+            <input type="text" id="idpaciente" name="idpaciente" hidden>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buscarPacienteModal">Buscar</button>
+        </div>
 
         <label for="cantidadDetalles">Cantidad de detalles:</label>
-        <select id="cantidadDetalles" name="cantidadDetalles">
+        <select id="cantidadDetalles" name="cantidadDetalles" class="form-select">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -26,9 +75,30 @@
 
         <div id="detallesContainer"></div>
 
-        <input type="submit" value="Crear ficha clínica">
+        <input type="submit" value="Crear ficha clínica" class="btn btn-primary">
     </form>
 
+    <!-- Modal de búsqueda de pacientes -->
+    <div class="modal fade" id="buscarPacienteModal" tabindex="-1" aria-labelledby="buscarPacienteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="buscarPacienteModalLabel">Buscar Paciente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="buscarPacienteInput" class="form-control" placeholder="Ingrese nombre y apellido del paciente">
+                    <div id="resultadosPacientes"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="gestion.js"></script>
 </body>
 

@@ -56,7 +56,7 @@ form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const fecha = document.getElementById('fechaInput').value;
-    const idpaciente = document.getElementById('pacienteInput').value;
+    const idpaciente = document.getElementById('idpaciente').value;
     const cantidadDetalles = parseInt(cantidadDetallesSelect.value);
     const detalles = [];
 
@@ -103,3 +103,73 @@ form.addEventListener('submit', async (event) => {
 
     // Resto del código para enviar la solicitud al backend
 });
+
+// ...
+
+const buscarPacienteInput = document.getElementById('buscarPacienteInput');
+const resultadosPacientes = document.getElementById('resultadosPacientes');
+
+// ...
+
+const buscarPacienteModal = new bootstrap.Modal(document.getElementById('buscarPacienteModal'), {});
+
+buscarPacienteInput.addEventListener('input', async () => {
+    const searchTerm = buscarPacienteInput.value.toLowerCase();
+    const pacientes = await getPacientes(); // Obtén los datos de los pacientes desde alguna fuente (por ejemplo, una API)
+
+    const resultados = pacientes.filter(paciente => {
+        const nombreCompleto = `${paciente.nombre} ${paciente.apellido}`.toLowerCase();
+        return nombreCompleto.includes(searchTerm);
+    });
+
+    mostrarResultadosPacientes(resultados);
+});
+
+async function getPacientes() {
+    try {
+        const response = await fetch('http://localhost:3000/Pacientes', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${token}` // Agregar el token en el header de la solicitud
+            },
+        }
+        );
+        const elementos = await response.json();
+        console.log(elementos);
+        return elementos;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function mostrarResultadosPacientes(resultados) {
+    resultadosPacientes.innerHTML = '';
+
+    if (resultados.length > 0) {
+        resultados.forEach(paciente => {
+            const pacienteDiv = document.createElement('div');
+            pacienteDiv.classList.add('paciente');
+
+            const nombreApellido = document.createElement('p');
+            nombreApellido.textContent = `${paciente.nombre} ${paciente.apellido}`;
+            pacienteDiv.appendChild(nombreApellido);
+
+            pacienteDiv.addEventListener('click', () => {
+                seleccionarPaciente(paciente);
+            });
+
+            resultadosPacientes.appendChild(pacienteDiv);
+        });
+    } else {
+        const sinResultados = document.createElement('p');
+        sinResultados.textContent = 'No se encontraron pacientes';
+        resultadosPacientes.appendChild(sinResultados);
+    }
+}
+
+function seleccionarPaciente(paciente) {
+    document.getElementById('idpaciente').value = paciente.id;
+    document.getElementById('pacienteInput').value = `${paciente.nombre} ${paciente.apellido}`;
+    buscarPacienteModal.hide();
+}

@@ -3,15 +3,58 @@
 
 <head>
     <title>Listar de fechas</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            background-color: #fff;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ff69b4;
+        }
+        
+        .container {
+            max-width: 2000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .menu-btn {
+            display: block;
+            text-align: center;
+            background-color: #ff69b4;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            margin-bottom: 10px;
+        }
+        
+        #lista {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        #lista th,
+        #lista td {
+            padding: 8px;
+            border: 1px solid #ff69b4;
+        }
+        
+        #tabla-body tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 
 <body>
-    <a href="/Frontend/index.html">Menu</a>
-    <h1>Listar Fichas</h1>
-
     <div class="container">
-        <a class="menu-btn" href="../index.html">Menu</a>
-        <br>
+        <a class="menu-btn" href="/Frontend/index.html">Menu</a>
+        <h1>Listar Fichas</h1>
 
         <table id="lista">
             <thead>
@@ -40,10 +83,10 @@
         </table>
 
     </div>
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="historial.js"></script>
 </body>
-</body>
-
 </html>
