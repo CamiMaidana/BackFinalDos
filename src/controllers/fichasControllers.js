@@ -50,6 +50,7 @@ export const getFichas = async (req, res) => {
                 },
                 {
                     model: Detalles,
+                    attributes: ['motivo', 'diagnostico', 'tratamiento'], 
                 }
             ]
         });
